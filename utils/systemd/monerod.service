@@ -1,0 +1,17 @@
+[Unit]
+Description=BUC Full Node
+After=network.target
+
+[Service]
+User=pango
+Group=pango
+WorkingDirectory=~
+
+Type=forking
+PIDFile=/var/run/pangod.pid
+
+ExecStart=/usr/bin/pangod --config-file /etc/pangod.conf \
+    --detach --pidfile /var/run/pangod.pid
+
+[Install]
+WantedBy=multi-user.target
