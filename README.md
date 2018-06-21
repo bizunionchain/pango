@@ -51,30 +51,6 @@ As with many development projects, the repository on Github is considered to be 
 
 **Anyone is welcome to contribute to BUC's codebase!** If you have a fix or code change, feel free to submit it as a pull request directly to the "master" branch. In cases where the change is relatively small or does not affect other parts of the codebase it may be merged in immediately by any one of the collaborators. On the other hand, if the change is particularly large or complex, it is expected that it will be discussed at length either well in advance of the pull request being submitted, or even directly on the pull request.
 
-## Supporting the Project
-
-BUC development can be supported directly through donations.
-
-Both BUC and Bitcoin donations can be made to donate.getpango.org if using a client that supports the [OpenAlias](https://openalias.org) standard
-
-The BUC donation address is: `44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A` (viewkey: `f359631075708155cc3d92a32b75a7d02a5dcf27756707b47a2b31b21c389501`)
-
-The Bitcoin donation address is: `1KTexdemPdxSBcG55heUuTjDRYqbC5ZL8H`
-
-*Note: you can easily donate XMR to the BUC donation address by using the `donate` command. Type `help` in the command-line wallet for details.*
-
-Core development funding and/or some supporting services are also graciously provided by sponsors:
-
-[<img width="80" src="https://static.getpango.org/images/sponsors/mypango.png"/>](https://mypango.com)
-[<img width="150" src="https://static.getpango.org/images/sponsors/kitware.png?1"/>](http://kitware.com)
-[<img width="100" src="https://static.getpango.org/images/sponsors/dome9.png"/>](http://dome9.com)
-[<img width="150" src="https://static.getpango.org/images/sponsors/araxis.png"/>](http://araxis.com)
-[<img width="150" src="https://static.getpango.org/images/sponsors/jetbrains.png"/>](http://www.jetbrains.com/)
-[<img width="150" src="https://static.getpango.org/images/sponsors/navicat.png"/>](http://www.navicat.com/)
-[<img width="150" src="https://static.getpango.org/images/sponsors/symas.png"/>](http://www.symas.com/)
-
-There are also several mining pools that kindly donate a portion of their fees, [a list of them can be found on our Bitcointalk post](https://bitcointalk.org/index.php?topic=583449.0).
-
 ## License
 
 See [LICENSE](LICENSE).
@@ -95,10 +71,7 @@ Dates are provided in the format YYYY-MM-DD.
 
 | Fork Date              | Consensus version | Minimum BUC Version | Recommended BUC Version | Details            |  
 | ----------------- | ----------------- | ---------------------- | -------------------------- | ------------------ |
-| 2016-09-21        | v3                | v0.9.4                 | v0.10.0                    | Splits coinbase into denominations  |
-| 2017-01-05        | v4                | v0.10.1                 | v0.10.2.1                   | Allow normal and RingCT transactions |
-| 2017-04-15        | v5                | v0.10.3.0               | v0.10.3.1                    | Adjusted minimum blocksize and fee algorithm      |
-| 2017-09-21        | v6                | Not determined as of 2017-03-27                | Not determined as of 2017-03-27                    | Allow only RingCT transactions      |
+| 2017-09-21        | v1                | v0.0.1                 | v0.0.1                    | Initiation  |
 
 ## Installing BUC from a Package
 
@@ -186,7 +159,7 @@ invokes cmake commands as needed.
 
 * Add `PATH="$PATH:$HOME/pango/build/release/bin"` to `.profile`
 
-* Run BUC with `pangod --detach`
+* Run BUC with `pangolind --detach`
 
 * **Optional**: build and run the test suite to verify the binaries:
 
@@ -247,7 +220,7 @@ Tested on a Raspberry Pi 2 with a clean install of minimal Debian Jessie from ht
 
 * Add `PATH="$PATH:$HOME/pango/build/release/bin"` to `.profile`
 
-* Run BUC with `pangod --detach`
+* Run BUC with `pangolind --detach`
 
 * You may wish to reduce the size of the swap file after the build has finished, and delete the boost directory from your home directory
 
@@ -342,15 +315,15 @@ By default, in either dynamically or statically linked builds, binaries target t
 * ```make release-static-win64``` builds binaries on 64-bit Windows portable across 64-bit Windows systems
 * ```make release-static-win32``` builds binaries on 64-bit or 32-bit Windows portable across 32-bit Windows systems
 
-## Running pangod
+## Running pangolind
 
 The build places the binary in `bin/` sub-directory within the build directory
 from which cmake was invoked (repository root by default). To run in
 foreground:
 
-    ./bin/pangod
+    ./bin/pangolind
 
-To list all available options, run `./bin/pangod --help`.  Options can be
+To list all available options, run `./bin/pangolind --help`.  Options can be
 specified either on the command line or in a configuration file passed by the
 `--config-file` argument.  To specify an option in the configuration file, add
 a line with the syntax `argumentname=value`, where `argumentname` is the name
@@ -358,17 +331,17 @@ of the argument without the leading dashes, for example `log-level=1`.
 
 To run in background:
 
-    ./bin/pangod --log-file pangod.log --detach
+    ./bin/pangolind --log-file pangolind.log --detach
 
 To run as a systemd service, copy
-[pangod.service](utils/systemd/pangod.service) to `/etc/systemd/system/` and
-[pangod.conf](utils/conf/pangod.conf) to `/etc/`. The [example
-service](utils/systemd/pangod.service) assumes that the user `pango` exists
+[pangolind.service](utils/systemd/pangolind.service) to `/etc/systemd/system/` and
+[pangolind.conf](utils/conf/pangolind.conf) to `/etc/`. The [example
+service](utils/systemd/pangolind.service) assumes that the user `pango` exists
 and its home is the data directory specified in the [example
-config](utils/conf/pangod.conf).
+config](utils/conf/pangolind.conf).
 
 If you're on Mac, you may need to add the `--max-concurrency 1` option to
-pango-wallet-cli, and possibly pangod, if you get crashes refreshing.
+pango-wallet-cli, and possibly pangolind, if you get crashes refreshing.
 
 ## Internationalization
 
@@ -376,25 +349,25 @@ See [README.i18n.md](README.i18n.md).
 
 ## Using Tor
 
-While BUC isn't made to integrate with Tor, it can be used wrapped with torsocks, if you add --p2p-bind-ip 127.0.0.1 to the pangod command line. You also want to set DNS requests to go over TCP, so they'll be routed through Tor, by setting DNS_PUBLIC=tcp. You may also disable IGD (UPnP port forwarding negotiation), which is pointless with Tor. To allow local connections from the wallet, you might have to add TORSOCKS_ALLOW_INBOUND=1, some OSes need it and some don't. Example:
+While BUC isn't made to integrate with Tor, it can be used wrapped with torsocks, if you add --p2p-bind-ip 127.0.0.1 to the pangolind command line. You also want to set DNS requests to go over TCP, so they'll be routed through Tor, by setting DNS_PUBLIC=tcp. You may also disable IGD (UPnP port forwarding negotiation), which is pointless with Tor. To allow local connections from the wallet, you might have to add TORSOCKS_ALLOW_INBOUND=1, some OSes need it and some don't. Example:
 
-`DNS_PUBLIC=tcp torsocks pangod --p2p-bind-ip 127.0.0.1 --no-igd`
+`DNS_PUBLIC=tcp torsocks pangolind --p2p-bind-ip 127.0.0.1 --no-igd`
 
 or:
 
-`DNS_PUBLIC=tcp TORSOCKS_ALLOW_INBOUND=1 torsocks pangod --p2p-bind-ip 127.0.0.1 --no-igd`
+`DNS_PUBLIC=tcp TORSOCKS_ALLOW_INBOUND=1 torsocks pangolind --p2p-bind-ip 127.0.0.1 --no-igd`
 
 TAILS ships with a very restrictive set of firewall rules. Therefore, you need to add a rule to allow this connection too, in addition to telling torsocks to allow inbound connections. Full example:
 
 `sudo iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 18081 -j ACCEPT`
 
-`DNS_PUBLIC=tcp torsocks ./pangod --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 --data-dir /home/amnesia/Persistent/your/directory/to/the/blockchain`
+`DNS_PUBLIC=tcp torsocks ./pangolind --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 --data-dir /home/amnesia/Persistent/your/directory/to/the/blockchain`
 
 `./pango-wallet-cli`
 
 ## Using readline
 
-While pangod and pango-wallet-cli do not use readline directly, most of the functionality can be obtained by running them via rlwrap. This allows command recall, edit capabilities, etc. It does not give autocompletion without an extra completion file, however. To use rlwrap, simply prepend `rlwrap` to the command line, eg:
+While pangolind and pango-wallet-cli do not use readline directly, most of the functionality can be obtained by running them via rlwrap. This allows command recall, edit capabilities, etc. It does not give autocompletion without an extra completion file, however. To use rlwrap, simply prepend `rlwrap` to the command line, eg:
 
 `rlwrap bin/pango-wallet-cli --wallet-file /path/to/wallet`
 
@@ -415,7 +388,7 @@ Run the build.
 Once it stalls, enter the following command:
 
 ```
-gdb /path/to/pangod `pidof pangod` 
+gdb /path/to/pangolind `pidof pangolind` 
 ```
 
 Type `thread apply all bt` within gdb in order to obtain the stack trace
@@ -426,27 +399,27 @@ Enter `ulimit -c unlimited` on the command line to enable unlimited filesizes fo
 
 Run the build.
 
-When it terminates with an output along the lines of "Segmentation fault (core dumped)", there should be a core dump file in the same directory as pangod.
+When it terminates with an output along the lines of "Segmentation fault (core dumped)", there should be a core dump file in the same directory as pangolind.
 
 You can now analyse this core dump with `gdb` as follows:
 
-`gdb /path/to/pangod /path/to/dumpfile`
+`gdb /path/to/pangolind /path/to/dumpfile`
 
 Print the stack trace with `bt`
 
 * To run pango within gdb:
 
-Type `gdb /path/to/pangod`
+Type `gdb /path/to/pangolind`
 
 Pass command-line options with `--args` followed by the relevant arguments
 
-Type `run` to run pangod
+Type `run` to run pangolind
 
 ## Analysing Memory Corruption
 
 We use the tool `valgrind` for this.
 
-Run with `valgrind /path/to/pangod`. It will be slow.
+Run with `valgrind /path/to/pangolind`. It will be slow.
 
 ## LMDB
 
