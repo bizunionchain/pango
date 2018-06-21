@@ -5,11 +5,9 @@ Portions Copyright (c) 2012-2013, The Cryptonote developers
 
 ## Development Resources
 
-- Web: [getpango.org](https://getpango.org)
-- Forum: [forum.getpango.org](https://forum.getpango.org)
-- Mail: [dev@getpango.org](mailto:dev@getpango.org)
-- GitHub: [https://github.com/pango-project/pango](https://github.com/pango-project/pango)
-- IRC: [#pango-dev on Freenode](http://webchat.freenode.net/?randomnick=1&channels=%23pango-dev&prompt=1&uio=d4)
+- Web: [http://bizunionchain.com](http://bizunionchain.com)
+- GitHub: [https://github.com/bizunionchain/pango](https://github.com/bizunionchain/pango)
+
 
 ## Build
 
